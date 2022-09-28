@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Prática de desenvolvimento web">
+        <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+        <meta name="author" content="Jeová Caçula de Aguiar Júnior">
+    </head>
+    <body>
+        <h1><%= title %></h1>
+        <form action="http://localhost:3000/categoria-salvar" method="POST" style="border-radius: 5px; border: 3px solid black; padding: 3px 7px;">
+            <p>Adicione uma categoria</p>
+            Chave:<input type="text" name="chave" value="" style="margin: 10px;"><br>
+            Valor:<input type="text" name="valor" value="" style="margin: 10px;"><br>
+            <input type="submit" value="Cadastrar">
+        </form>
+        <br>
+        <table>
+            <tr>
+                <td> Chave </td>
+                <td> Valor </td>
+                <td></td>
+            </tr>
+            <% a.forEach(function(obj) { %>
+                <tr>
+                    <td><%=obj.chave%></td>
+                    <td><%=obj.valor%></td>
+                    <td><a href="http://localhost:3000/categoria-deletar?chave=<%=obj.chave%>"><button>Deletar</button></a></td>
+                </tr>
+            <% }); %>
+        </table>
+    </body> 
+</html>
