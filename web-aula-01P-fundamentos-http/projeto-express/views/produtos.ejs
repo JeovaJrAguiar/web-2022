@@ -1,28 +1,52 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title><%= title %></title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Prática de desenvolvimento web" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript" />
+    <meta name="author" content="Igor Vinícius Santos Abreu" />
+    <style>
+        .spaco{
+            padding: 3px
+        }
+    </style>
+  </head>
 
-    <head>
-        <title><%= title %></title>
-        <meta charset="UTF-8">
-        <meta name="description" content="Prática de desenvolvimento web">
-        <meta name="keywords" content="HTML,CSS,XML,JavaScript">
-        <meta name="author" content="Igor Vinícius Santos Abreu">
-    </head>
+  <body>
+    <div">
+      <h1>Bem vindo a tela de <%= title %></h1>
+      <div>
+        <a href="http://localhost:3000/cadastrar-produto"><button style="margin: 5px; padding: 2px;">Cadastrar produto</button></a>
+        
+        <br>
+      </div>
 
-    <body>
-        <h1> Bem vindo a tela de <%= title %></h1> 
-        <table>
-            <tr>
-                <td>Chave</td>
-                <td>Valor</td>
-                <td>Deletar</td>
-            </tr>
-            <tr>
-                <td>Teste1</td>
-                <td>Teste2</td>
-                <td>Teste3</td>
-            </tr>
-        </table>
-    </body> 
 
+      <div>
+      <table style="border: 3px solid #000;">
+        <tr style="font-weight: 700;">
+          <td class="spaco">Id</td>
+          <td class="spaco">Categoria</td>
+          <td class="spaco">Nome</td>
+          <td class="spaco">Descrição</td>
+          <td class="spaco">Preço</td>
+          <td></td>
+        </tr>
+        <% aProdutos.forEach(function(obj) { %>
+        <tr>
+          <td class="spaco"><%=obj.id%></td>
+          <td class="spaco"><%=obj.categoria%></td>
+          <td class="spaco"><%=cat[i].valor%></td>
+          <td class="spaco"><%=obj.nome%></td>
+          <td class="spaco"><%=obj.descricao%></td>
+          <td class="spaco"><%=obj.preco%></td>
+          <td><a href="http://localhost:3000/produto-editar?id=<%=obj.id%>"><button>Editar</button></a></td>
+        </tr>
+
+        <% }); %>
+      </table>
+    </div>
+    </div>
+  </body>
 </html>
