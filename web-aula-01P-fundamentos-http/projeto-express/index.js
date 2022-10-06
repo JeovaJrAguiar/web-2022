@@ -14,7 +14,15 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 app.get('/produtos', (req, res) => {
-  res.render('produtos',{title: 'Produtos'})
+
+  var i=0
+  array.forEach(function(obj) {
+    if(produtos.categoria == obj.chave) return
+    i = ++i
+  });
+
+  res.render('produtos',{title: 'Produtos', cat: array, aProdutos: produtos, i: i})
+
 });
 
 app.get('/categorias', (req, res) => {
@@ -51,6 +59,61 @@ array =
   {chave: "34", valor: "43.00"},
   {chave: "45", valor: "45.00"}
 ]
+
+
+//pratica05
+
+//var idProduto = 1;
+produtos = [
+  //{id: 1, nome: "Casa", descricao: "Casa linda com gramado verde sintilante e vista para o mar.", preco: 12.00}
+]
+
+app.get('/cadastrar-produto', (req, res) => {
+  let idProd = 0;
+  if(produtos.length == 0) {
+    idProd = 1
+  }else{
+    idProd = parseInt(produtos[produtos.length-1].id);
+    ++idProd;
+  }
+
+  res.render('cadastrar-produto', {title: 'Cadastrar produto', aCategorias: array, idProduto: idProd});
+});
+
+app.post('/cadastrar-produto', (req, res) => {
+  produtos.push(req.body)
+
+  res.redirect('produtos');
+});
+
+app.get('/produto-editar', (req, res) => {
+  console.log(req.query.id)
+
+  produtos.forEach(element => {
+    if(element.id == req.query.id) produto = element
+  });
+
+  //let idProd = parsiInt(produto.id)
+
+  //res.redirect('produtos')
+  res.render('produto-editar', {title: 'Editar produto', aCategorias: array, tId: produto.id, tNome: produto.nome, tDescricao: produto.descricao, tPreco: produto.preco})
+});
+
+app.post('/produto-editar', (req, res) => {
+  console.log(req.body)
+
+ produtos.forEach(element => {
+    if(element.id == req.body.id){
+      element.categoria = req.body.categoria
+      element.nome = req.body.nome
+      element.descricao = req.body.descricao
+      element.preco = req.body.preco
+    }
+  });
+
+  res.redirect('produtos');
+});
+
 
 // ===============================================
 // Construido na pratica anterior
