@@ -60,9 +60,7 @@ array =
   {chave: "45", valor: "45.00"}
 ]
 
-
 //pratica05
-
 //var idProduto = 1;
 produtos = [
   //{id: 1, nome: "Casa", descricao: "Casa linda com gramado verde sintilante e vista para o mar.", preco: 12.00}
@@ -81,7 +79,10 @@ app.get('/cadastrar-produto', (req, res) => {
 });
 
 app.post('/cadastrar-produto', (req, res) => {
+
+  console.log(req.body)
   produtos.push(req.body)
+  console.log(produtos)
 
   res.redirect('produtos');
 });
