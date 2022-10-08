@@ -14,13 +14,13 @@
   </head>
 
   <body>
-    <div">
-      <h1>Bem vindo a tela de <%= title %></h1>
-      <div>
+    <div>
+      <header>
+        <h1>Bem vindo a tela de <%= title %></h1>
+      
         <a href="http://localhost:3000/cadastrar-produto"><button style="margin: 5px; padding: 2px;">Cadastrar produto</button></a>
-        
-        <br>
-      </div>
+      </header>
+      <br>
 
 
       <div>
@@ -36,8 +36,7 @@
         <% aProdutos.forEach(function(obj) { %>
         <tr>
           <td class="spaco"><%=obj.id%></td>
-          <td class="spaco"><%=obj.categoria%></td>
-          <td class="spaco"><%=cat[i].valor%></td>
+          <td class="spaco">categoria</td>
           <td class="spaco"><%=obj.nome%></td>
           <td class="spaco"><%=obj.descricao%></td>
           <td class="spaco"><%=obj.preco%></td>

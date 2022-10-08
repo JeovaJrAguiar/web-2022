@@ -54,15 +54,13 @@ app.post('/categoria-salvar',(req, res)=>{
 
 array = 
 [
-  {chave: "32", valor: "23.00"},
-  {chave: "33", valor: "33.00"},
-  {chave: "34", valor: "43.00"},
-  {chave: "45", valor: "45.00"}
+  {chave: "32", valor: "PORSCHE"},
+  {chave: "33", valor: "LAMBORGHINI"},
+  {chave: "34", valor: "MASERATI"},
+  {chave: "45", valor: "FERRARI"}
 ]
 
-
 //pratica05
-
 //var idProduto = 1;
 produtos = [
   //{id: 1, nome: "Casa", descricao: "Casa linda com gramado verde sintilante e vista para o mar.", preco: 12.00}
@@ -81,7 +79,10 @@ app.get('/cadastrar-produto', (req, res) => {
 });
 
 app.post('/cadastrar-produto', (req, res) => {
+
+  console.log(req.body)
   produtos.push(req.body)
+  console.log(produtos)
 
   res.redirect('produtos');
 });
