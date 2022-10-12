@@ -1,0 +1,36 @@
+header{
+    background-color: #161b21;  
+    color: #fff;
+    
+    padding: 10px 70px;
+    margin: -21px -8px auto;
+
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+body{
+    background-color: #0c1116;
+}
+
+#divOptions2{
+    background-color: #112338;
+    border: #1d4f83 solid 1px;
+    border-radius: 4px;
+
+    margin: 10px;
+    padding: 10px;
+    width: 40%;
+    height: 400%;
+
+}
+
+#divOptions{
+    background-color: #21262d;
+    border: #30363d solid 1px; 
+    border-radius: 4px;
+
+    margin: 10% 40% auto;
+    padding: 10px;
+    width: 20%;
+    height: 200px;
+}

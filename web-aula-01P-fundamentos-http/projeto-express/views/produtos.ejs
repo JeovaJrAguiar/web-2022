@@ -18,10 +18,10 @@
       <header>
         <h1>Bem vindo a tela de <%= title %></h1>
       
+        <a href="http://localhost:3000/"><button>Voltar</button></a>
         <a href="http://localhost:3000/cadastrar-produto"><button style="margin: 5px; padding: 2px;">Cadastrar produto</button></a>
       </header>
       <br>
-
 
       <div>
       <table style="border: 3px solid #000;">
@@ -33,19 +33,26 @@
           <td class="spaco">Preço</td>
           <td></td>
         </tr>
+ 
         <% aProdutos.forEach(function(obj) { %>
-        <tr>
-          <td class="spaco"><%=obj.id%></td>
-          <td class="spaco">categoria</td>
-          <td class="spaco"><%=obj.nome%></td>
-          <td class="spaco"><%=obj.descricao%></td>
-          <td class="spaco"><%=obj.preco%></td>
-          <td><a href="http://localhost:3000/produto-editar?id=<%=obj.id%>"><button>Editar</button></a></td>
-        </tr>
+          <% j=0 %>
+          <% aCat.forEach(function(cat) {%>
+            
+          <% });%>
 
+          <tr>
+            <td class="spaco"><%=obj.id%></td>
+            <td class="spaco"><%=aCat[0].valor%></td>
+            <td class="spaco"><%=obj.nome%></td>
+            <td class="spaco"><%=obj.descricao%></td>
+            <td class="spaco"><%=obj.preco%></td>
+            <td><a href="http://localhost:3000/produto-editar?id=<%=obj.id%>"><button>Editar</button></a></td>
+          </tr>
         <% }); %>
+
       </table>
     </div>
+    <br>
     </div>
   </body>
 </html>
