@@ -14,9 +14,10 @@
 
         Nome:<input type="text" name="nome" value="" style="margin: 10px;"  placeholder="<%= tNome%>"><br>
         Categoria: 
-        <select>
+        <select type="text" name="categoria" value="">
           <% aCategorias.forEach(function(obj) { %>
-            <option value="<%= obj.chave%>"><%= obj.chave%></option>
+            <option value="<%= obj.chave%>"><%= obj.valor%></option>
+            
           <% }); %>
         </select><br>
           

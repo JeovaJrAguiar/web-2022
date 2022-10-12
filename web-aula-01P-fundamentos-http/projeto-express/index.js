@@ -13,20 +13,40 @@ app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-app.get('/produtos', (req, res) => {
+array = 
+[
+  {chave: "32", valor: "Carro"},
+  {chave: "33", valor: "Livro", },
+  {chave: "34", valor: "Mesa"},
+  {chave: "45", valor: "Faca"}
+]
 
+camposCustomizados = [
+  {
+    chaveCategoria: "32",
+    campos: [
+      {valor: "roda"}, 
+      {valor: "porta"}, 
+      {valor: "farol"}, 
+      {valor: "banco"}
+    ]
+  }
+]
+
+app.get('/produtos', (req, res) => {
+  var j=0
   var i=0
   array.forEach(function(obj) {
     if(produtos.categoria == obj.chave) return
     i = ++i
   });
+  //<%= if(obj.categoria == cat.valor) j++%>
 
-  res.render('produtos',{title: 'Produtos', cat: array, aProdutos: produtos, i: i})
-
+  res.render('produtos',{title: 'Produtos', aCat: array, aProdutos: produtos, i: i, j: j})
 });
 
 app.get('/categorias', (req, res) => {
-  res.render('categorias', {title: 'Categorias', a: array})
+  res.render('categorias', {title: 'Categorias', a: array, cCustomizados: camposCustomizados})
 });
 
 app.get('/categoria-deletar',(req, res)=>{
@@ -52,18 +72,10 @@ app.post('/categoria-salvar',(req, res)=>{
   res.redirect('categorias')
 });
 
-array = 
-[
-  {chave: "32", valor: "PORSCHE"},
-  {chave: "33", valor: "LAMBORGHINI"},
-  {chave: "34", valor: "MASERATI"},
-  {chave: "45", valor: "FERRARI"}
-]
-
 //pratica05
 //var idProduto = 1;
 produtos = [
-  //{id: 1, nome: "Casa", descricao: "Casa linda com gramado verde sintilante e vista para o mar.", preco: 12.00}
+  //{id: 1, nome: "Casa", categoria: "", descricao: "Casa linda com gramado verde sintilante e vista para o mar.", preco: 12.00}
 ]
 
 app.get('/cadastrar-produto', (req, res) => {
