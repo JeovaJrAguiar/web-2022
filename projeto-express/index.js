@@ -7,13 +7,78 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+const basicAuth = require('express-basic-auth');
+
+/*app.use(basicAuth({
+  users: { 'admin': '12345' },
+  challenge: true
+}));*/
+
+/*app.use('/produto/*', basicAuth( { authorizer: myAuthorizerMongo, authorizeAsync: true , challenge: true} ));
+
+function myAuthorizerMongo(username, password, cb) {
+  console.log(username)
+  console.log(password)
+
+    console.log(
+      database.getUsers(username, password)
+        .then(users => {
+          return cb(null, users.length > 0);
+    }));
+}*/
+// ===============================================
+// create mongo client
+const { MongoClient } = require('mongodb');
+
+// Connection URL
+const url = 'mongodb://root:rootpwd@localhost:27017';
+const client = new MongoClient(url);
+
+// Database Name
+const dbName = 'ufcwebauth';
+var db;
+var user_collection;
+async function main() {
+  await client.connect();
+  console.log('Connected successfully to server');
+  db = client.db(dbName);
+  console.log(db);
+  user_collection = db.collection('user');
+  console.log(user_collection);
+  return 'done.';
+}
+
+main()
+  .then(console.log)
+  .catch(console.error);
+//   .finally(() => client.close());
+app.use(basicAuth( { authorizer: myAsyncAuthorizer } ))
+
+function myAsyncAuthorizer(username, password, cb) {
+  getUsers(username, password)
+    .then(users => {
+          return cb(null, users.length > 0);
+  })
+}
+async function getUsers(username, password) {
+  console.log("in getUsers")
+  console.log(username, password)
+
+    const findResult = await db.user_collection.find({username: username, password: password}).toArray();
+    console.log('Found documents =>', findResult);
+    return findResult;
+}
+
+exports.getUsers = getUsers;
+// ===========================
+
 app.use(express.static('public'));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-array = 
+array =
 [
   {chave: "32", valor: "Carro"},
   {chave: "33", valor: "Livro", },
@@ -25,9 +90,9 @@ camposCustomizados = [
   {
     chaveCategoria: "32",
     campos: [
-      {valor: "roda"}, 
-      {valor: "porta"}, 
-      {valor: "farol"}, 
+      {valor: "roda"},
+      {valor: "porta"},
+      {valor: "farol"},
       {valor: "banco"}
     ]
   }
@@ -61,8 +126,14 @@ app.get('/categoria-deletar',(req, res)=>{
   res.redirect('categorias')
 });
 
-app.get('/home', (req, res) => {
-  res.render('home', {title: 'Lab MPA', message: 'Bem vindo ao Lab MPA'});
+app.get('/', (req, res) => {
+  basic = Buffer.from(req.headers.authorization.split(' ')[1], 'base64').toString().split(':');
+  username = basic[0];
+  password = basic[1];
+  console.log('Username: ' + username);
+  console.log('Password: ' + password);
+
+  //res.render('home', {title: 'Lab MPA', message: 'Bem vindo ao Lab MPA'});
 });
 
 app.post('/categoria-salvar',(req, res)=>{
@@ -129,72 +200,9 @@ app.post('/produto-editar', (req, res) => {
 
 
 // ===============================================
-// Construido na pratica anterior
-
-animals = [
-  {animal: "DOG", name:"Pluto"}
-  ,{animal:"CAT", name:"Hercules"}
-  ,{animal:"BIRD", name:"Tweety"}
-  ,{animal:"DOG", name:"Spiff"}
-  ,{animal:"CAT", name:"Tom"}
-  ,{animal:"BIRD", name:"Road Runner"}
-]
-
-//Busca animal pelo nome ou pelo tipo
-app.get('/animal', (req, res) => {
-  if(req.query.name){
-    busca = req.query.name
-    respArray = []
-    for (let i = 0; i < animals.length; i++) {
-      const a = animals[i];
-      if(a.name.includes(busca)){
-        respArray.push(a)        
-      }
-    }
-    res.send(respArray);
-  }else if(req.query.animal){
-    busca = req.query.animal
-    respArray = []
-    for (let i = 0; i < animals.length; i++) {
-      const a = animals[i];
-      if(a.animal.includes(busca)){
-        respArray.push(a)        
-      }
-    }
-    res.send(respArray);
-
-  } else {
-    res.send(animals);
-  }
-})
-
-//retorna os dados enviados pelo post para a rota mirror
-app.post('/mirror', function (req, res) {
-  console.log(req.body)
-  res.send(req.body)
-})
-
-// Retorna o nosso array
-app.get('/animals', (req, res) => {
-    console.log(animals);
-  res.send(animals)
-})
-
-// Mostra no console a porta que está rodando a aplicação
+// server
 app.listen(port, () => {
   console.log(`--`)
   console.log(`=========== Nossa aplicação está rodando na porta ${port} ===========`)
   console.log(`--`)
-})
-
-// Busca pelos parâmetros da consulta
-app.get('/paramtojson/name/:name/role/:role', (req, res) => {
-  console.log(req.params);
-  res.send(req.params);
-})  
-
-// Busca pelo caminho
-app.get('/querytojson', (req, res) => {
-  console.log(req.query);
-res.send(req.query)
 })
