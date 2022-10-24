@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <%=   %> 
-      <h1><%= title %></h1>
-    
-    <p><%= message %></p>
-  </body>
+    <head>
+        <title>Express - Basic Auth</title>
+        <link rel="stylesheet" type="text/css" href="./prod/css/stylesheet.css" media="screen"/>
+        
+    </head>
+    <body>
+        <header>
+            <p>Loja Produtos</p>
+            <p class="titleheader">User: <%= loggedUser.username %></p>
+        </header>
+        <div id="divHomeMenu">
+            <button class="selectAction"><a href="/prod/new" class="classLink">Adicionar Produto</a></button><br/>
+            <button class="selectAction"><a href="/prod/list" class="classLink">Meus Produtos</a></button><br>
+            <button class="homeButton"><a class="homeButton" href="http://localhost:3000/home">Home</a></button>
+        </div>
+    </body>
 </html>

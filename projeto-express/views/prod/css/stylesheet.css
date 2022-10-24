@@ -1,0 +1,147 @@
+body{
+    background-color: #0c1116;
+    color: #c9d1d8;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+}
+
+header{
+    background-color: #161b21;
+    column-count: 2;
+    margin: -10px -6px;
+    padding: 1% 10%;
+}
+
+/* New Product*/
+.titleheader{
+    padding-top: 15px;
+    text-align: right;
+}
+
+p{
+    font-size: 25px;
+}
+
+#formNewProduct {
+    border: #30363d solid 1px;
+    border-radius: 7px;
+    padding: 10px;
+
+    margin-left: 27%;
+    margin-right: 27%;
+    margin-top: 10%;
+}
+
+input, table{
+    background: none;
+    border: #30363d solid 1px;
+    border-radius: 4px;
+    
+    color: #c9d1d8;
+    padding: 4px;
+}
+
+/* Product List*/
+
+#productList {
+    border: #30363d solid 1px;
+    border-radius: 7px;
+    padding: 10px;
+
+    margin-left: 10%;
+    margin-right: 5%;
+    margin-top: 10px;
+}
+
+#labelProductList{
+    margin: 5%;
+    padding: 0px;
+
+    margin-left: 0px;
+    margin-right: 10%;
+    margin-bottom: 1%;
+}
+
+tr{
+    margin: 40px;
+}
+
+#listProducts{
+    padding: 10px;
+
+    margin-left: 10%;
+    margin-right: -0%;
+    margin-top: 3%;
+}
+
+#collumnIdListProducts{
+    width: 250px;
+}
+
+#collumnNameListProducts{
+    width: 450px;
+}
+
+#collumnPriceListProducts{
+    width: 70px;
+}
+
+#tableListProducts{
+    width: 90%;
+}
+
+.thead{
+    padding: 2px 3px;
+    margin: 2px 3px;
+}
+
+.homeButton{
+    background-color: #15994f;
+    text-decoration: none;
+    color: #c9d1d8;
+
+    border: #15994f solid 2px;
+    border-radius: 4px;
+    margin: 10px 0px;
+    padding: 3px 4px;
+
+}
+
+.homeButtonCancel{
+    background-color: #fd4540;
+    text-decoration: none;
+    color: #c9d1d8;
+
+    border: #fd4540 solid 2px;
+    border-radius: 4px;
+    margin: 10px 0px;
+    padding: 3px 4px;
+
+}
+
+.selectAction{
+    background-color: #21262d;
+    color: #c9d1d8;
+
+    width: 30%;
+    height: 40px;
+
+    border: #363b42 solid 1px;
+    border-radius: 4px;
+    margin: 5px 50px;
+}
+
+.classLink{
+    text-decoration: none;
+    background-color: #21262d;
+    color: #c9d1d8;
+}
+
+#divHomeMenu{
+    border: #30363d solid 1px;
+    border-radius: 7px;
+    padding: 10px;
+
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 10%;
+}
