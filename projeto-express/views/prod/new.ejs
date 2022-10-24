@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Express - Basic Auth</title>
+        <link rel="stylesheet" type="text/css" href="./css/stylesheet.css" media="screen"/>
+        
+    </head>
+    <body>
+        <header>
+            <p>Loja Produtos</p>
+            <p class="titleheader">User: <%= loggedUser.username %></p>
+        </header>
+        <div>
+            
+            <form action="/prod/new" method="POST" id="formNewProduct">
+                <p><b>Novo Produto</b></p>
+                <b>Nome: </b><input type="text" name="name" value="" style="margin: 10px;"><br>
+                <b>Categoria: </b>
+                    <select type="text" name="category" value="">
+                        <% categorias.forEach(function(obj) { %>
+                            <option name="category" value="<%= obj.chave%>"><%= obj.valor%></option>
+                        <% }); %>
+                    </select><br>
+          
+                <b>Descrição: </b><input type="text" name="descricao" value="" style="margin: 10px;"><br>
+                <b>Preço: </b><input type="number" name="price" value="" style="margin: 10px;"><br>
+                
+                <input type="submit"  class="homeButton" value="Save">
+                <button class="homeButtonCancel"><a class="homeButtonCancel" href="http://localhost:3000/home">Cancelar</a></button>
+                
+            </form> 
+        </div>
+    </body>
+</html>

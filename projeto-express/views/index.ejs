@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Products System</title>
+    <link rel="stylesheet" type="text/css" href="./prod/css/stylesheet.css" media="screen"/>
+  </head>
+  <body>
+      <header>
+        <p>Loja Produtos</p>
+      </header>
+
+      <div id="listProducts">
+      <p id="labelProductList">Produtos Cadastrados</p>
+        <table id="tableListProducts">
+            <thead>
+                <tr>
+                    <td class="thead">Id</td>
+                    <td class="thead">Categoria</td>
+                    <td class="thead">Nome</td>
+                    <td class="thead">Descrição</td>
+                    <td class="thead">Preco</td>
+                    <td class="thead">Autor</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < products.length; i++) {%>
+                   <tr>
+                        <td>
+                            <%= products[i]._id %> 
+                        </td>
+                        <% for (let j = 0; j < categorias.length; j++) {%>
+                          <% if(categorias[j].chave == products[i].category) {%> 
+                            <td>
+                              <%= categorias[j].valor %>
+                            </td>
+                          <%} %>
+                        <% } %> 
+                        
+                        <td>
+                            <%= products[i].name %> 
+                        </td>
+                        <td>
+                            <%= products[i].descricao %> 
+                        </td>
+                        <td>
+                            <%= products[i].price %> 
+                        </td>
+                        <td>
+                          <%= products[i].createdBy.username %> 
+                      </td>
+                   </tr> 
+                <% } %> 
+            </tbody>
+        </table>
+        </div>
+        <br>
+        <br><button style="margin-left: 135px;" class="homeButton"><a class="homeButton" href="http://localhost:3000/home">Inicio</a></button>
+  </body>
+</html>
