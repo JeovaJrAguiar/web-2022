@@ -53,4 +53,15 @@ public class Turma {
     public void setAlunos(List<Aluno> alunos){
         this.alunos = alunos;
     }
+
+    public int deleteAlunoByMatricula(int matricula){
+        int aux = 0;
+        for(Aluno aluno : this.alunos){
+            if(aluno.getMatricula() == matricula){
+                this.alunos.remove(aluno);
+                aux = 1;
+            }
+        }
+        return aux;
+    }
 }
