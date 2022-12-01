@@ -1,10 +1,14 @@
 package web.ufc.br.classsystem.model;
 
+import java.util.Date;
 import java.util.List;
+
+import org.hibernate.annotations.ManyToAny;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Turma {    
@@ -14,6 +18,11 @@ public class Turma {
     private String disciplina;
     private int semestre;
     private List<Aluno> alunos;
+    private List<Date> horarios;
+    @ManyToMany
+    private Aluno aluno;
+    @ManyToAny
+    private Disciplina disciplinas;
 
     public Turma(int codigo, String disciplina, int semestre, List<Aluno> alunos) {
         this.codigo = codigo;
@@ -52,6 +61,14 @@ public class Turma {
 
     public void setAlunos(List<Aluno> alunos){
         this.alunos = alunos;
+    }
+
+    public List<Date> getHorarios(){
+        return horarios;
+    }
+
+    public void setHorarios(List<Date> horarios){
+        this.horarios = horarios;
     }
 
     public int deleteAlunoByMatricula(int matricula){
