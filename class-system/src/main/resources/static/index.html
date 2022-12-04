@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>Web 2022</title>
+</head>
+<body>
+    <h1>Turma</h1>
+    <div>
+        Disciplina: <input type="text" id="disciplina"> <br/>
+        Semestre: <input type="number" id="semestre"> <br/>
+        <input type="button" value="Save" onclick="save()">
+    </div>
+    <div id="turmas"></div>
+    <script>
+        function save(){
+            let codigo = document.getElementById("codigo").value;
+            let disciplina = document.getElementById("disciplina").value;
+            let semestre = document.getElementById("semestre").value;
+            newturma = {codigo: parseInt(codigo), disciplina: disciplina, semestre: parseInt(semestre)};
+           
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", '/api/turma', true);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+            xhr.onload = function() {
+			    if (this.readyState == 4 && this.status == 200) {
+                    loadList()
+                }
+            }
+
+            xhr.send(JSON.stringify(newturma));
+        }
+
+        function loadList(){
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("GET", "/api/turma", true);
+			xhttp.onload = function() {
+			    if (this.readyState == 4 && this.status == 200) {
+					turmas = JSON.parse(xhttp.responseText);
+			    	turmasDiv = document.getElementById("turmas");
+                    lista = '<ul>';
+                    for (const i in turmas){
+                        let t = turmas[i];
+                        lista += '<li>' + t.codigo + ' - ' + t.nome + ' - ' + t.semestre + '</li>';
+                    } 
+                    lista += '</ul>';
+                    turmasDiv.innerHTML = lista;
+                }
+			};
+			xhttp.send();
+		}
+		loadList();
+    </script>
+</body>
+</html>
